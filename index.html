@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Czas:
+        <!-- <span class="hours"></span>:
+        <span class="minutes"></span>:
+        <span class="seconds"></span> -->
+        <span class="time"></span>
+    </p>
+    <script>
+        const timeSpan = document.querySelector('.time')
+        const finalDate = new Date('12-31-2021, 00:00:00')
+
+        function countdown() {
+            let currentTime = new Date().getTime()
+            let timeDiff = finalDate - currentTime
+            // console.log(finalDate)
+            // console.log(finalDate.getTime())
+            // console.log(currentTime)
+            // console.log(timeDiff)
+            let seconds = (timeDiff/1000).toFixed()
+            let minutes = (timeDiff/(60*1000)).toFixed()
+            let hours = (timeDiff/(1000*60*60)).toFixed()
+            let days = (timeDiff/(1000*60*60*24)).toFixed()
+            // console.log(seconds)
+            // console.log(minutes)
+            // console.log(hours)
+            // console.log(days)
+            // formated time 
+            let formattedSec = seconds % 60 
+            let formattedMin = minutes % 60 
+            let formattedHours = hours % 24
+            let formattedDays = days
+            // time as string 
+            let timeAsString = `${formattedDays} days,
+                                ${formattedHours <= 9 ? '0'+formattedHours : formattedHours} hours,
+                                ${formattedMin <= 9 ? '0'+ formattedMin : formattedMin} minutes,
+                                ${formattedSec <= 9 ? '0' + formattedSec : formattedSec} seconds`
+            timeSpan.textContent = timeAsString
+            console.log(timeAsString)
+        }    
+        setInterval(countdown, 1000)
+    </script>
+</body>
+</html>
